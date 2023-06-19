@@ -43,7 +43,8 @@ public class LottoApplication {
                 model.deleteNumbers();
                 break;
             case "Loeschen":
-                
+                displayWhichNumber();
+                model.deleteNumber(getUserInputAsInt());
                 break;
             case "Einfuegen":
                 displayWhichNumber();

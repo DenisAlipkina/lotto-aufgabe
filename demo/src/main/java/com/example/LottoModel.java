@@ -38,10 +38,20 @@ public class LottoModel {
             writer.write(filePath, unluckyNumbers);
         } 
     }
+    public void deleteNumber(int num) throws IOException {
+        int index = unluckyNumbers.indexOf(num);
+        if(index >= 0) {
+            unluckyNumbers.remove(unluckyNumbers.indexOf(num));
+            writer.write(filePath, unluckyNumbers);
+        }
+       
+    }
 
     private void sortUnluckyNumbers() {
         Collections.sort(unluckyNumbers);
     }
+
+    
 
     
 }
