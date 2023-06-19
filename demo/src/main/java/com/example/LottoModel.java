@@ -1,15 +1,19 @@
 package com.example;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 public class LottoModel {
+    private final String filePath = "demo/src/resources/unluckyNumbers.csv";
     private List<Integer> unluckyNumbers;
-    private CSVReader reader;
+    private final CSVReader reader;
+    private final CSVWriter writer;
 
     public LottoModel() {
         unluckyNumbers = new LinkedList<>();
         reader = new CSVReader();
+        writer = new CSVWriter();
     }
 
     public String getUnluckyNumbers() {
@@ -18,6 +22,11 @@ public class LottoModel {
     }
 
     private void readUnluckyNumbers() {
-        unluckyNumbers = reader.read("demo/src/resources/unluckyNumbers.csv");
+        unluckyNumbers = reader.read(filePath);
+    }
+
+    public void addNumber(int num) throws IOException {
+        unluckyNumbers.add(num);
+        writer.write(filePath, unluckyNumbers);
     }
 }

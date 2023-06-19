@@ -27,7 +27,7 @@ public class LottoApplication {
 		System.out.println("Auf Wiedersehen Herr Keller");
 	}
 
-    private boolean processUserInput(String userInput) {
+    private boolean processUserInput(String userInput) throws IOException {
         switch (userInput) {
             case "Exit":
                 return true;
@@ -39,14 +39,15 @@ public class LottoApplication {
                 currentStage = Stage.EURO;
                 displayOptions(1);
                 break;
-            case "Alle Löschen":
+            case "Alle Loeschen":
                 
                 break;
-            case "Löschen":
+            case "Loeschen":
                 
                 break;
-            case "Einfügen":
-                
+            case "Einfuegen":
+                displayWhichNumber();
+                model.addNumber(getUserInputAsInt());
                 break;
             case "Tippreihe":
                 
@@ -59,7 +60,7 @@ public class LottoApplication {
                 break;
             default:
                 displayError(userInput + 
-                " ist keine richtige Eingabe\n Geben Sie 'Lotto', 'Eurojackpot', 'Alle Löschen', 'Löschen', \n'Einfügen', 'Tippreihe', 'Alle Anzeigen' oder 'Exit' ein");
+                " ist keine richtige Eingabe\n Geben Sie 'Lotto', 'Eurojackpot', 'Alle Loeschen', 'Loeschen', \n'Einfuegen', 'Tippreihe', 'Alle Anzeigen' oder 'Exit' ein");
                 break;
         }
         return false;
@@ -68,6 +69,11 @@ public class LottoApplication {
     private String getUserInput() throws IOException {
         BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
 		return consoleInput.readLine();
+    }
+
+    // No Error Handeling
+    private int getUserInputAsInt() throws IOException {
+        return Integer.valueOf(getUserInput());
     }
 
     private void displayError(String message) {
@@ -93,6 +99,10 @@ public class LottoApplication {
             System.out.println("Sie können mit 'Tippreihe' eine Tippreihe generieren");
         }
         
+    }
+
+    private void displayWhichNumber() {
+        System.out.println("Welche Nummer?");
     }
 
 
