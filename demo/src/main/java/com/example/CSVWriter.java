@@ -33,8 +33,6 @@ public class CSVWriter {
         if(line.endsWith(",")) {
             line = line.substring(0, line.length()-1);
         }
-        
-        System.out.println(line);
         writer.write(line);
         try {
             Thread.sleep(100);
