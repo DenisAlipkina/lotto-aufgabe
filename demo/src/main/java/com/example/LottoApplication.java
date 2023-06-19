@@ -54,7 +54,7 @@ public class LottoApplication {
                 break;
             default:
                 displayError(userInput + 
-                " ist keine richtige Eingabe\n Geben Sie 'Lotto', 'Eurojackpot' oder 'Exit' ein");
+                " ist keine richtige Eingabe\n Geben Sie 'Lotto', 'Eurojackpot', 'Alle Löschen', 'Löschen', \n'Einfügen', 'Tippreihe', 'Alle Anzeigen' oder 'Exit' ein");
                 break;
         }
         return false;
@@ -85,7 +85,7 @@ public class LottoApplication {
             System.out.println("Sie können mit 'Alle Löschen' alle Unglückszahlen löschen");
             System.out.println("Sie können mit 'Löschen' eine Unglückszahl löschen");
             System.out.println("Sie können mit 'Einfügen' eine Unglückszahl einfügen");
-            System.out.println("Sie können mit 'Tippreihe' eine Tippreihe generieren lassen");
+            System.out.println("Sie können mit 'Tippreihe' eine Tippreihe generieren");
         }
         
     }
