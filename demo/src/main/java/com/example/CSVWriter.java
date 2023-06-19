@@ -30,9 +30,10 @@ public class CSVWriter {
         for(int num : unluckyNumbers) {
             line += num + delimiter;
         }
-        //if statement for empty line should be added
+        if(line.endsWith(",")) {
+            line = line.substring(0, line.length()-1);
+        }
         
-        line = line.substring(0, line.length()-1);
         System.out.println(line);
         writer.write(line);
         try {

@@ -40,7 +40,7 @@ public class LottoApplication {
                 displayOptions(1);
                 break;
             case "Alle Loeschen":
-                
+                model.deleteNumbers();
                 break;
             case "Loeschen":
                 

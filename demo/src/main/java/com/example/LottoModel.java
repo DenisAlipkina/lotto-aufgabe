@@ -25,6 +25,11 @@ public class LottoModel {
     private void readUnluckyNumbers() {
         unluckyNumbers = reader.read(filePath);
     }
+    
+    public void deleteNumbers() throws IOException {
+        unluckyNumbers = new LinkedList<>();
+        writer.write(filePath, unluckyNumbers);
+    }
 
     public void addNumber(int num) throws IOException {
         if(!unluckyNumbers.contains(num)) {
@@ -37,4 +42,6 @@ public class LottoModel {
     private void sortUnluckyNumbers() {
         Collections.sort(unluckyNumbers);
     }
+
+    
 }
