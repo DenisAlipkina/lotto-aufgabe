@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 public class LottoApplication {
 
     private Stage currentStage = Stage.LOTTO;
+    private LottoModel model;
+
+    public LottoApplication() {
+        model = new LottoModel();
+    }
 
     public void run() throws Exception { 
 		
@@ -47,7 +52,7 @@ public class LottoApplication {
                 
                 break;
             case "Alle Anzeigen":
-                
+                model.getUnluckyNumbers();
                 break;
             case "":
                 currentStage = Stage.LOTTO;
