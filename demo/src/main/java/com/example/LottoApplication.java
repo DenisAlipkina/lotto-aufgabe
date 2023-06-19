@@ -51,7 +51,11 @@ public class LottoApplication {
                 model.addNumber(getUserInputAsInt());
                 break;
             case "Tippreihe":
-                
+                if(currentStage == Stage.LOTTO) {
+                    displayTipp(model.generateLottoTip());
+                } else if (currentStage == Stage.EURO) {
+                    displayTipp(model.generateEurojackpotTip());
+                }
                 break;
             case "Alle Anzeigen":
                 model.getUnluckyNumbers();
@@ -70,6 +74,8 @@ public class LottoApplication {
 
     
 
+    
+
     private String getUserInput() throws IOException {
         BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
 		return consoleInput.readLine();
@@ -82,6 +88,10 @@ public class LottoApplication {
     
     private void displayUnluckyNumbers() {
         System.out.println(model.getUnluckyNumbers());
+    }
+
+    private void displayTipp(String generateLottoTip) {
+        System.out.println("Der Tipp: " + generateLottoTip);
     }
 
     private void displayError(String message) {
@@ -99,6 +109,7 @@ public class LottoApplication {
         System.out.println("Falls das Programm geschlossen werden soll, schreiben Sie 'Exit'");
         if (option == 0) {
             System.out.println("Welches Spiel wollen Sie wählen?");
+            System.out.println("Lotto oder Eurojackpot?");
         } else if (option == 1) {
             System.out.println("Sie können mit 'Alle Anzeigen' alle Unglückszahlen anzeigen lassen");
             System.out.println("Sie können mit 'Alle Löschen' alle Unglückszahlen löschen");

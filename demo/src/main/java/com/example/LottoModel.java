@@ -10,11 +10,25 @@ public class LottoModel {
     private List<Integer> unluckyNumbers;
     private final CSVReader reader;
     private final CSVWriter writer;
+    private final Game lotto;
+    private final Game eurolotto;
 
     public LottoModel() {
-        unluckyNumbers = new LinkedList<>();
         reader = new CSVReader();
         writer = new CSVWriter();
+        readUnluckyNumbers();
+        lotto = new GameLotto(unluckyNumbers);
+        eurolotto = new GameEurojackpot(unluckyNumbers);
+    }
+
+    public String generateLottoTip() {
+        lotto.excludedUnluckyNumbers = unluckyNumbers;
+        return lotto.generateTip();
+    }
+
+    public String generateEurojackpotTip() {
+        eurolotto.excludedUnluckyNumbers = unluckyNumbers;
+        return eurolotto.generateTip();
     }
 
     public String getUnluckyNumbers() {
