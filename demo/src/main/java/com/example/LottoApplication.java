@@ -54,6 +54,7 @@ public class LottoApplication {
                 break;
             case "Alle Anzeigen":
                 model.getUnluckyNumbers();
+                displayUnluckyNumbers();
                 break;
             case "":
                 currentStage = Stage.LOTTO;
@@ -66,6 +67,8 @@ public class LottoApplication {
         return false;
     }
 
+    
+
     private String getUserInput() throws IOException {
         BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
 		return consoleInput.readLine();
@@ -74,6 +77,10 @@ public class LottoApplication {
     // No Error Handeling
     private int getUserInputAsInt() throws IOException {
         return Integer.valueOf(getUserInput());
+    }
+    
+    private void displayUnluckyNumbers() {
+        System.out.println(model.getUnluckyNumbers());
     }
 
     private void displayError(String message) {

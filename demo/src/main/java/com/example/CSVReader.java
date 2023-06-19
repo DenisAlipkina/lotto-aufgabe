@@ -40,15 +40,16 @@ public class CSVReader {
         init(filepath);
         try {
             line = reader.readLine();
-            //token.addAll(Arrays.asList(line.split(delimiter)).stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList()));
-            for(String num : line.split(delimiter)) {
-                token.add(Integer.valueOf(num));
+            if(line != null) {
+                //token.addAll(Arrays.asList(line.split(delimiter)).stream().map(s -> Integer.valueOf(s)).collect(Collectors.toList()));
+                for(String num : line.split(delimiter)) {
+                    token.add(Integer.valueOf(num));
+                }
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }    
-        System.out.println(token);
         return token;
     }
 }

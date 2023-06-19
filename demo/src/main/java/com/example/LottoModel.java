@@ -19,7 +19,7 @@ public class LottoModel {
 
     public String getUnluckyNumbers() {
         readUnluckyNumbers();
-        return "Test";
+        return unluckyNumbers.toString();
     }
 
     private void readUnluckyNumbers() {
