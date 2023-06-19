@@ -1,6 +1,7 @@
 package com.example;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,7 +27,14 @@ public class LottoModel {
     }
 
     public void addNumber(int num) throws IOException {
-        unluckyNumbers.add(num);
-        writer.write(filePath, unluckyNumbers);
+        if(!unluckyNumbers.contains(num)) {
+            unluckyNumbers.add(num);
+            sortUnluckyNumbers();
+            writer.write(filePath, unluckyNumbers);
+        } 
+    }
+
+    private void sortUnluckyNumbers() {
+        Collections.sort(unluckyNumbers);
     }
 }
