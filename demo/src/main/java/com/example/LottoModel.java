@@ -6,14 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LottoModel {
-    private final String filePath = "demo/src/resources/unluckyNumbers.csv";
+    private final String filePath;
     private List<Integer> unluckyNumbers;
     private final CSVReader reader;
     private final CSVWriter writer;
     private final Game lotto;
     private final Game eurolotto;
 
-    public LottoModel() {
+    public LottoModel(String filePath) {
+        this.filePath = filePath;
         reader = new CSVReader();
         writer = new CSVWriter();
         readUnluckyNumbers();
@@ -67,7 +68,12 @@ public class LottoModel {
         Collections.sort(unluckyNumbers);
     }
 
-    
+    public Game getGameLotto() {
+        return lotto;
+    }
 
+    public Game getGameEurojackpot() {
+        return eurolotto;
+    }
     
 }

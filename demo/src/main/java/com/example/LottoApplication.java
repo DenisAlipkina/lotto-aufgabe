@@ -10,7 +10,7 @@ public class LottoApplication {
     private LottoModel model;
 
     public LottoApplication() {
-        model = new LottoModel();
+        model = new LottoModel("demo/src/resources/unluckyNumbers.csv");
     }
 
     public void run() throws Exception { 
