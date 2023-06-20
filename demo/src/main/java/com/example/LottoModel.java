@@ -45,12 +45,14 @@ public class LottoModel {
         writer.write(filePath, unluckyNumbers);
     }
 
-    public void addNumber(int num) throws IOException {
-        if(!unluckyNumbers.contains(num)) {
+    public boolean addNumber(int num) throws IOException {
+        if(!unluckyNumbers.contains(num) && num > 0 && (num <= GameLotto.amountChoosingFrom || num <= GameEurojackpot.amountChoosingFrom)) {
             unluckyNumbers.add(num);
             sortUnluckyNumbers();
             writer.write(filePath, unluckyNumbers);
-        } 
+            return true;
+        }
+        return false;
     }
     public void deleteNumber(int num) throws IOException {
         int index = unluckyNumbers.indexOf(num);

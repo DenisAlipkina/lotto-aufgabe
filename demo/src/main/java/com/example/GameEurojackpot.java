@@ -4,11 +4,11 @@ import java.util.List;
 
 public class GameEurojackpot extends Game {
 
-    private final int amountOfTips = 5;
-    private final int amountChoosingFrom = 50;
+    public final static int amountOfTips = 5;
+    public final static int amountChoosingFrom = 50;
 
-    private final int amountOfJackpotTips = 2;
-    private final int amountJackpotChoosingFrom = 10;
+    public final static int amountOfJackpotTips = 2;
+    public final static int amountJackpotChoosingFrom = 10;
 
     public GameEurojackpot(List<Integer> excludedUnluckyNumbers) {
         super(excludedUnluckyNumbers);

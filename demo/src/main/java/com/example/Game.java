@@ -22,7 +22,6 @@ public abstract class Game implements TipGeneration{
                               .collect(Collectors.toList());
          */
         List<Integer> numbers = new LinkedList<>();
-        System.out.println("Ex: " + excludedUnluckyNumbers);
         for (int i = 1; i <= amountChoosingFrom; i++) {
             if(!excludedUnluckyNumbers.contains(i)) {
                 numbers.add(i);
@@ -30,8 +29,11 @@ public abstract class Game implements TipGeneration{
         }
         Collections.shuffle(numbers);
         if (numbers.size() >= amountOfTips) {
-            return numbers.subList(0, amountOfTips);
+            List<Integer> tips = numbers.subList(0, amountOfTips);
+            Collections.sort(tips);
+            return tips;
         } else {
+            Collections.sort(numbers);
             return numbers;
         }
         

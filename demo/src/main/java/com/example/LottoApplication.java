@@ -28,6 +28,7 @@ public class LottoApplication {
 	}
 
     private boolean processUserInput(String userInput) throws IOException {
+        boolean addingSucces = false;
         switch (userInput) {
             case "Exit":
                 return true;
@@ -48,7 +49,11 @@ public class LottoApplication {
                 break;
             case "Einfuegen":
                 displayWhichNumber();
-                model.addNumber(getUserInputAsInt());
+                addingSucces = model.addNumber(getUserInputAsInt());
+                if (!addingSucces) {
+                    displayError(
+                "Ihre Eingabe ist nicht richtig.\nGeben Sie eine Zahl zwischen 1 und " + GameLotto.amountChoosingFrom + "(Lotto) oder " + GameEurojackpot.amountChoosingFrom + "(Eurojackpot) ein");
+                }
                 break;
             case "Tippreihe":
                 if(currentStage == Stage.LOTTO) {
@@ -63,6 +68,7 @@ public class LottoApplication {
                 break;
             case "":
                 currentStage = Stage.LOTTO;
+                displayOptions(1);
                 break;
             default:
                 displayError(userInput + 
@@ -112,9 +118,9 @@ public class LottoApplication {
             System.out.println("Lotto oder Eurojackpot?");
         } else if (option == 1) {
             System.out.println("Sie können mit 'Alle Anzeigen' alle Unglückszahlen anzeigen lassen");
-            System.out.println("Sie können mit 'Alle Löschen' alle Unglückszahlen löschen");
-            System.out.println("Sie können mit 'Löschen' eine Unglückszahl löschen");
-            System.out.println("Sie können mit 'Einfügen' eine Unglückszahl einfügen");
+            System.out.println("Sie können mit 'Alle Loeschen' alle Unglückszahlen löschen");
+            System.out.println("Sie können mit 'Loeschen' eine Unglückszahl löschen");
+            System.out.println("Sie können mit 'Einfuegen' eine Unglückszahl einfügen");
             System.out.println("Sie können mit 'Tippreihe' eine Tippreihe generieren");
         }
         
