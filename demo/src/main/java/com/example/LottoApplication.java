@@ -8,6 +8,8 @@ public class LottoApplication {
 
     private Stage currentStage = Stage.LOTTO;
     private LottoModel model;
+    //can be anynumber, which is excluded from unluckyNumbers
+    private final int errorNumber = 404;
 
     public LottoApplication() {
         model = new LottoModel("demo/src/resources/unluckyNumbers.csv");
@@ -82,14 +84,24 @@ public class LottoApplication {
 
     
 
-    private String getUserInput() throws IOException {
+    private String getUserInput() {
         BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
-		return consoleInput.readLine();
+		try {
+            return consoleInput.readLine();
+        } catch (IOException e) {
+            return "Illigal Statement";
+        }
     }
 
     // No Error Handeling
-    private int getUserInputAsInt() throws IOException {
-        return Integer.valueOf(getUserInput());
+    private int getUserInputAsInt() {
+
+        try {
+            return Integer.valueOf(getUserInput());
+        } catch (NumberFormatException e) {
+            return errorNumber;
+        }
+        
     }
     
     private void displayUnluckyNumbers() {
