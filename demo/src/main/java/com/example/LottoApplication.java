@@ -52,7 +52,8 @@ public class LottoApplication {
                 addingSucces = model.addNumber(getUserInputAsInt());
                 if (!addingSucces) {
                     displayError(
-                "Ihre Eingabe ist nicht richtig.\nGeben Sie eine Zahl zwischen 1 und " + GameLotto.amountChoosingFrom + "(Lotto) oder " + GameEurojackpot.amountChoosingFrom + "(Eurojackpot) ein");
+                "Ihre Eingabe ist nicht richtig.\nGeben Sie eine Zahl zwischen 1 und " + GameLotto.amountChoosingFrom + "(Lotto) oder " + GameEurojackpot.amountChoosingFrom + "(Eurojackpot) ein\n"
+                + "Oder betrachten Sie die maximale Anzahl an Unglückszahlen (" + model.maxAmountUnluckyNumbers + ")");
                 }
                 break;
             case "Tippreihe":
@@ -63,7 +64,6 @@ public class LottoApplication {
                 }
                 break;
             case "Alle Anzeigen":
-                model.getUnluckyNumbers();
                 displayUnluckyNumbers();
                 break;
             case "":

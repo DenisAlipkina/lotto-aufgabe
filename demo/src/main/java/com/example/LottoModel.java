@@ -33,9 +33,9 @@ public class LottoModel {
         return eurolotto.generateTip();
     }
 
-    public String getUnluckyNumbers() {
+    public List<Integer> getUnluckyNumbers() {
         readUnluckyNumbers();
-        return unluckyNumbers.toString();
+        return unluckyNumbers;
     }
 
     private void readUnluckyNumbers() {
