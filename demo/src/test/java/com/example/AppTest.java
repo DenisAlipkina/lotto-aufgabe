@@ -18,14 +18,17 @@ import org.junit.jupiter.params.provider.CsvSource;
  */
 public class AppTest 
 {
+    //logger could have specifications for testing and normal usage
+    LottoLogger dummyLogger = new LottoLogger(false);
+
     @ParameterizedTest
     @CsvSource({
         "'1,2,3,4,5'",
         "'20,30,40'"
     })
     public void csv_write_and_read_are_equal_and_not_empty_test(String input) throws IOException {
-        CSVReader reader = new CSVReader();
-        CSVWriter writer = new CSVWriter();
+        CSVReader reader = new CSVReader(dummyLogger);
+        CSVWriter writer = new CSVWriter(dummyLogger);
         List<Integer> inputAsList = Arrays.asList(input.split(",")).stream().map(s -> Integer.valueOf(s)).toList();
         writer.write("src/test/resources/test.csv", inputAsList);
         List<Integer> outputAsList = reader.read("src/test/resources/test.csv");
@@ -36,7 +39,7 @@ public class AppTest
 
     @Test
     public void init_model_gives_right_games_with_right_unluckyNumbers_test() throws IOException {
-        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv");
+        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv", dummyLogger);
         assertTrue(!model.getGameLotto().excludedUnluckyNumbers.isEmpty());
         assertTrue(!model.getGameEurojackpot().excludedUnluckyNumbers.isEmpty());
         assertEquals(model.getGameLotto().excludedUnluckyNumbers, model.getGameEurojackpot().excludedUnluckyNumbers);
@@ -45,7 +48,7 @@ public class AppTest
     @Test
     @RepeatedTest(1000)
     public void generated_lottotip_doesnt_contain_excluded_numbers_and_correct_amount_of_tips_test() throws IOException {
-        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv");
+        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv", dummyLogger);
         assertTrue(!model.getGameLotto().excludedUnluckyNumbers.isEmpty());
         String tips = model.generateLottoTip();
         boolean excludedNumberIsPresent = false;
@@ -65,7 +68,7 @@ public class AppTest
     @Test
     @RepeatedTest(1000)
     public void generated_eurojackpottip1_doesnt_contain_excluded_numbers_and_correct_amount_of_tips_test() throws IOException {
-        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv");
+        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv", dummyLogger);
         assertTrue(!model.getGameEurojackpot().excludedUnluckyNumbers.isEmpty());
         String tips = model.generateEurojackpotTip();
         boolean excludedNumberIsPresent = false;
@@ -87,7 +90,7 @@ public class AppTest
     @Test
     @RepeatedTest(1000)
     public void generated_eurojackpottip2_doesnt_contain_excluded_numbers_and_correct_amount_of_tips_test() throws IOException {
-        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv");
+        LottoModel model = new LottoModel("src/test/resources/unluckyNumbersTest.csv", dummyLogger);
         assertTrue(!model.getGameEurojackpot().excludedUnluckyNumbers.isEmpty());
         String tips = model.generateEurojackpotTip();
         boolean excludedNumberIsPresent = false;
@@ -111,10 +114,10 @@ public class AppTest
     })
     //deletingtest would look similar
     public void adding_unluckyNumbers_in_model_test(String input) throws IOException {
-        CSVWriter writer = new CSVWriter();
+        CSVWriter writer = new CSVWriter(dummyLogger);
         writer.write("src/test/resources/test.csv", List.of());
 
-        LottoModel model = new LottoModel("src/test/resources/test.csv");
+        LottoModel model = new LottoModel("src/test/resources/test.csv", dummyLogger);
         assertTrue(model.getUnluckyNumbers().isEmpty());
 
         Arrays.asList(input.split(",")).stream().forEach(num -> {
@@ -137,10 +140,10 @@ public class AppTest
     })
     //deletingtest would look similar
     public void cant_adding_illegal_unluckyNumbers_in_model_test(Integer input) throws IOException {
-        CSVWriter writer = new CSVWriter();
+        CSVWriter writer = new CSVWriter(dummyLogger);
         writer.write("src/test/resources/test.csv", List.of());
 
-        LottoModel model = new LottoModel("src/test/resources/test.csv");
+        LottoModel model = new LottoModel("src/test/resources/test.csv", dummyLogger);
         assertTrue(model.getUnluckyNumbers().isEmpty());
 
         assertFalse(model.addNumber(input));

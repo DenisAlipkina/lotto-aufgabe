@@ -10,8 +10,8 @@ public class GameEurojackpot extends Game {
     public final static int amountOfJackpotTips = 2;
     public final static int amountJackpotChoosingFrom = 10;
 
-    public GameEurojackpot(List<Integer> excludedUnluckyNumbers) {
-        super(excludedUnluckyNumbers);
+    public GameEurojackpot(List<Integer> excludedUnluckyNumbers, LottoLogger logger) {
+        super(excludedUnluckyNumbers, logger);
     }
 
     @Override
