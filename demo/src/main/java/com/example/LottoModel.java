@@ -12,6 +12,7 @@ public class LottoModel {
     private final CSVWriter writer;
     private final Game lotto;
     private final Game eurolotto;
+    public final int maxAmountUnluckyNumbers = 6;
 
     public LottoModel(String filePath) {
         this.filePath = filePath;
@@ -47,7 +48,7 @@ public class LottoModel {
     }
 
     public boolean addNumber(int num) throws IOException {
-        if(!unluckyNumbers.contains(num) && num > 0 && (num <= GameLotto.amountChoosingFrom || num <= GameEurojackpot.amountChoosingFrom)) {
+        if(!unluckyNumbers.contains(num) && num > 0 && (num <= GameLotto.amountChoosingFrom || num <= GameEurojackpot.amountChoosingFrom) && unluckyNumbers.size() < maxAmountUnluckyNumbers) {
             unluckyNumbers.add(num);
             sortUnluckyNumbers();
             writer.write(filePath, unluckyNumbers);

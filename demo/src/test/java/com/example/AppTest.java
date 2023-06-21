@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
@@ -72,8 +71,6 @@ public class AppTest
 
         List<String> firstTip = Arrays.asList(tips.substring(tips.indexOf("[") + 1, tips.indexOf("]")).replaceAll("\\s+","").split(","));
         List<String> secondTip = Arrays.asList(tips.substring(tips.lastIndexOf("[") + 1, tips.lastIndexOf("]")).replaceAll("\\s+","").split(","));
-        System.out.println(firstTip);
-        System.out.println(secondTip);
         for (String str : firstTip) {
             amountOfTips++;
             if(model.getGameEurojackpot().excludedUnluckyNumbers.contains(Integer.valueOf(str))) {
