@@ -1,12 +1,8 @@
 package com.example;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,15 +24,14 @@ public class LottoLogger {
             filepath += "log_" + dtf.format(now) + ".txt";
             File file = new File(filepath);
             try {
+                //for creating file in filepath
                 FileWriter fw = new FileWriter(file);
+                fw.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+                //Bad exception handeling
                 e.printStackTrace();
             }
         }
-        
-
-
     }
 
     public void logInit(String className, String message) {
@@ -73,14 +68,12 @@ public class LottoLogger {
 
 
     private void write(String message) {
-        
         if(this.logWriting) {
             try {
                 Files.write(Path.of(filepath), message.getBytes(StandardCharsets.UTF_8),
                         StandardOpenOption.APPEND);
             } catch (IOException e) {
                 //bad exceptionhandeling
-                e.printStackTrace();
             }
         }
     }

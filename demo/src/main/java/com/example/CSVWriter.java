@@ -33,8 +33,6 @@ public class CSVWriter {
                 //Bad exceptionhandeling
                 e.printStackTrace();
             }
-            
-         
     }
 
     public void write(String filepath, List<Integer> unluckyNumbers) throws IOException {
@@ -50,6 +48,7 @@ public class CSVWriter {
         writer.write(line);
         logger.logMessage(logClassName, "Writing completed: " + line);
         try {
+            //didnt work without sleep. Maybe works without in future. Could be deleted then
             Thread.sleep(100);
         } catch (InterruptedException e) {
             logger.logError(logClassName, "Failed to sleep. " + e);
